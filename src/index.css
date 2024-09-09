@@ -1,0 +1,49 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-size: 100%;
+    line-height: 1.5;
+  }
+  
+  ul, ol {
+    list-style: none;
+  }
+ 
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  
+  input, textarea, select, button {
+    font: inherit;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
