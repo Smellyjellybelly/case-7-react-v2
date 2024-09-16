@@ -1,50 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Movies from './components/movies/MovieCard';
 import Shows from './components/shows/Shows';
-import Booking from './components/bookings/BookingForm';
+import './app.css';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [shows, setShows] = useState([]);
-  const [bookings, setBookings] = useState([]);
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [moviesResponse, showsResponse, bookingsResponse] = await Promise.all([
-          fetch('https://cinema-api.henrybergstrom.com/api/v1/movies'),
-          fetch('https://cinema-api.henrybergstrom.com/api/v1/shows'),
-          fetch('https://cinema-api.henrybergstrom.com/api/v1/bookings')
-        ]);
-
-        const moviesData = await moviesResponse.json();
-        const showsData = await showsResponse.json();
-        const bookingsData = await bookingsResponse.json();
-
-        setMovies(moviesData);
-        setShows(showsData);
-        setBookings(bookingsData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
+    const fetchMovies = async () => {
+      const response = await fetch('https://cinema-api.henrybergstrom.com/api/v1/movies');
+      const data = await response.json();
+      setMovies(data);
+      setLoading(false);
     };
 
-    fetchData();
+    fetchMovies();
   }, []);
 
+  const handleMovieClick = (movieId) => {
+    setSelectedMovieId(movieId);
+  };
+
+  const handleBackClick = () => {
+    setSelectedMovieId(null); // Reset the selected movie
+  };
+
   if (loading) {
-    return <div>Loading data...</div>;
+    return <p>Loading movies...</p>;
   }
 
   return (
     <div className="App">
-      <h1>Movies and Shows</h1>
-      <Movies movies={movies} />
-      <Shows shows={shows} />
-     
+      {selectedMovieId ? (
+        <>
+          <button onClick={handleBackClick} className="back-button">Back to Movies</button>
+          <Shows movieId={selectedMovieId} />
+        </>
+      ) : (
+        <Movies movies={movies} onMovieClick={handleMovieClick} />
+      )}
     </div>
   );
 }
