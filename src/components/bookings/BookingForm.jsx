@@ -2,81 +2,96 @@ import React, { useState } from 'react';
 
 const BookingForm = ({ show }) => {
   const [email, setEmail] = useState('');
-  const [numberOfSeats, setNumberOfSeats] = useState(1);
+  const [seats, setSeats] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [confirmation, setConfirmation] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleBookingSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
 
-    const bookingData = {
+    const selectedSeats = show.availableSeats.slice(0, seats); // Select the first `seats` from availableSeats
+    const bookingDetails = {
       email: email,
       show: show._id,
-      seats: Array.from({ length: numberOfSeats }, (_, i) => `Seat ${i + 1}`), // For now, we generate seats dynamically
-      totalPrice: numberOfSeats * show.pricePerSeat,
+      seats: selectedSeats, // Array of selected seat IDs (e.g., "A1", "A2")
+      bookingTime: new Date().toISOString(), // Booking time set to current time
+      totalPrice: seats * show.pricePerSeat, // Calculate total price
     };
 
     try {
       const response = await fetch('https://cinema-api.henrybergstrom.com/api/v1/bookings', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bookingData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingDetails),
       });
 
-      if (response.ok) {
-        const result = await response.json();
-        setConfirmation(result);
-      } else {
-        console.error('Failed to submit booking.');
+      if (!response.ok) {
+        throw new Error('Failed to submit booking.');
       }
+
+      const data = await response.json();
+      setConfirmation(data); // Store confirmation data after successful booking
     } catch (error) {
-      console.error('Error during booking submission:', error);
+      setError(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  if (confirmation) {
+    return (
+      <div>
+        <h2>Booking Confirmation</h2>
+        <p>Your booking is confirmed!</p>
+        <p><strong>Movie:</strong> {show.movie.title}</p>
+        <p><strong>Seats:</strong> {confirmation.seats.join(', ')}</p>
+        <p><strong>Total Price:</strong> ${confirmation.totalPrice}</p>
+        <p><strong>Booking Time:</strong> {new Date(confirmation.bookingTime).toLocaleString()}</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {confirmation ? (
-        <div>
-          <h2>Booking Confirmation</h2>
-          <p><strong>Movie Title:</strong> {show.movie.title}</p>
-          <p><strong>Date:</strong> {new Date(show.startTime).toLocaleDateString()}</p>
-          <p><strong>Time:</strong> {new Date(show.startTime).toLocaleTimeString()}</p>
-          <p><strong>Seats:</strong> {confirmation.seats.join(', ')}</p>
-          <p><strong>Total Price:</strong> ${confirmation.totalPrice}</p>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <h2>Book Your Seats for {show.movie.title}</h2>
-          <p><strong>Date:</strong> {new Date(show.startTime).toLocaleDateString()}</p>
-          <p><strong>Time:</strong> {new Date(show.startTime).toLocaleTimeString()}</p>
-          <p><strong>Room:</strong> {show.roomNumber}</p>
-          <p><strong>Price per Seat:</strong> ${show.pricePerSeat}</p>
-
-          <label>
-            Email:
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </label>
-
-          <label>
-            Number of Seats:
-            <input
-              type="number"
-              value={numberOfSeats}
-              onChange={(e) => setNumberOfSeats(e.target.value)}
-              min="1"
-              max={show.availableSeats.length}
-              required
-            />
-          </label>
-
-          <button type="submit">Book Now</button>
-        </form>
-      )}
+      <h2>Booking Form</h2>
+      <p><strong>Movie:</strong> {show.movie.title}</p>
+      <p><strong>Start Time:</strong> {new Date(show.startTime).toLocaleString()}</p>
+      <p><strong>End Time:</strong> {new Date(show.endTime).toLocaleString()}</p>
+      <p><strong>Room Number:</strong> {show.roomNumber}</p>
+      <p><strong>Price per Seat:</strong> ${show.pricePerSeat}</p>
+      <form onSubmit={handleBookingSubmit}>
+        <label>
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Number of Seats:
+          <input
+            type="number"
+            value={seats}
+            onChange={(e) => setSeats(e.target.value)}
+            min="1"
+            max={show.availableSeats.length}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Confirm Booking'}
+        </button>
+        {error && <p>Error: {error}</p>}
+      </form>
     </div>
   );
 };
