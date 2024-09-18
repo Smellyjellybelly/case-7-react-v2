@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Movies from './components/movies/MovieCard';
 import Shows from './components/shows/Shows';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import './app.css';
 
 function App() {
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header /> {/* Ensure the header is always visible */}
       {selectedMovieId ? (
         <>
           <button onClick={handleBackClick} className="back-button">Back to Movies</button>
@@ -41,6 +44,7 @@ function App() {
       ) : (
         <Movies movies={movies} onMovieClick={handleMovieClick} />
       )}
+      <Footer />
     </div>
   );
 }

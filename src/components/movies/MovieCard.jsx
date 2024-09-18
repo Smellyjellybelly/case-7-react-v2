@@ -4,7 +4,6 @@ import './MovieCard.css';
 const Movies = ({ movies, onMovieClick }) => {
   return (
     <div>
-      <h1>Movies</h1>
       <div className="movies-list">
         {movies.map((movie) => (
           <div

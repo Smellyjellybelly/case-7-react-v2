@@ -2,9 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    margin: 10px;
+    
   }
   
   .movie-card {
+    background-color: #FFCFE2;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 16px;
