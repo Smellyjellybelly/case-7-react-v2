@@ -1,15 +1,34 @@
+.shows-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex-grow: 1;
+}
+
 .shows-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+
+  
+}
+.selec-show {
+  flex-grow: 1;
+}
+
+.booking-div {
+  flex-grow: 1;
 }
 
 .show-card {
-  border: 1px solid #ccc;
+  background-color: #FFCFE2;
+  border: 5px solid #FDBFD3;
   border-radius: 8px;
   padding: 16px;
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  flex-grow: 1;
 }
 
 .show-card h2 {

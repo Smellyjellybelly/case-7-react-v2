@@ -7,10 +7,10 @@ const ShowCard = ({ movie, startTime, endTime, availableSeats, bookedSeats, room
 
   return (
     <div className="show-card">
-      <img src={posterUrl} alt={`${title} poster`} className="show-poster" />
+      
       <h2>{title}</h2>
-      <p><strong>Start Time:</strong> {new Date(startTime).toLocaleString()}</p>
-      <p><strong>End Time:</strong> {new Date(endTime).toLocaleString()}</p>
+      <p><strong>Start Time:</strong> {new Date(startTime).toUTCString()}</p>
+      <p><strong>End Time:</strong> {new Date(endTime).toUTCString()}</p>
       <p><strong>Room Number:</strong> {roomNumber}</p>
       <p><strong>Price per Seat:</strong> ${pricePerSeat}</p>
       <p><strong>Available Seats:</strong> {availableSeats.length}</p>

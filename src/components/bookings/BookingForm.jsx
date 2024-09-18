@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './BookingForm.css';
 
 const BookingForm = ({ show }) => {
   const [email, setEmail] = useState('');
@@ -45,7 +46,7 @@ const BookingForm = ({ show }) => {
 
   if (confirmation) {
     return (
-      <div>
+      <div className='book-conf'>
         <h2>Booking Confirmation</h2>
         <p>Your booking is confirmed!</p>
         <p><strong>Movie:</strong> {show.movie.title}</p>
@@ -57,7 +58,7 @@ const BookingForm = ({ show }) => {
   }
 
   return (
-    <div>
+    <div className='b-form-div'>
       <h2>Booking Form</h2>
       <p><strong>Movie:</strong> {show.movie.title}</p>
       <p><strong>Start Time:</strong> {new Date(show.startTime).toLocaleString()}</p>
@@ -87,7 +88,7 @@ const BookingForm = ({ show }) => {
           />
         </label>
         <br />
-        <button type="submit" disabled={isSubmitting}>
+        <button className='back-button' type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Confirm Booking'}
         </button>
         {error && <p>Error: {error}</p>}

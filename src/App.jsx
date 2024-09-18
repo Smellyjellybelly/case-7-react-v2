@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header /> {/* Ensure the header is always visible */}
+      <Header /> 
       {selectedMovieId ? (
         <>
           <button onClick={handleBackClick} className="back-button">Back to Movies</button>

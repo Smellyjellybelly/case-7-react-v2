@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ShowCard from './ShowCard';
 import BookingForm from '../bookings/BookingForm'; // Import the booking form
+import './ShowCard.css'
 
 const Shows = ({ movieId }) => {
   const [shows, setShows] = useState([]);
@@ -54,8 +55,8 @@ const Shows = ({ movieId }) => {
   if (bookingMode && selectedShow) {
     // Display the booking form for the selected show
     return (
-      <div>
-        <button onClick={handleBackClick}>Back to Show</button>
+      <div className='booking-div'>
+        <button className='back-button' onClick={handleBackClick}>Back to Show</button>
         <BookingForm show={selectedShow} /> {/* Pass the selected show to the form */}
       </div>
     );
@@ -64,8 +65,8 @@ const Shows = ({ movieId }) => {
   if (selectedShow) {
     // Display only the selected show with a booking button
     return (
-      <div>
-        <button onClick={handleBackClick}>Back to Shows</button>
+      <div className='selec-show'>
+        <button className='back-button' onClick={handleBackClick}>Back to Shows</button>
         <ShowCard
           key={selectedShow._id}
           movie={selectedShow.movie}
@@ -77,14 +78,14 @@ const Shows = ({ movieId }) => {
           pricePerSeat={selectedShow.pricePerSeat}
         />
         {/* Add the "Book Now" button */}
-        <button onClick={handleBookingClick}>Book Now</button>
+        <button className='back-button' onClick={handleBookingClick}>Book Now</button>
       </div>
     );
   }
 
   // Display all shows
   return (
-    <div>
+    <div className='shows-div'>
       {shows.length > 0 ? (
         shows.map((show) => (
           <div key={show._id} onClick={() => handleShowClick(show)}>
