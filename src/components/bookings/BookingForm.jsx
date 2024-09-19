@@ -2,96 +2,115 @@ import React, { useState } from 'react';
 import './BookingForm.css';
 
 const BookingForm = ({ show }) => {
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const [email, setEmail] = useState('');
-  const [seats, setSeats] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-  const [confirmation, setConfirmation] = useState(null);
+  const [isBooked, setIsBooked] = useState(false);
+  const [confirmationDetails, setConfirmationDetails] = useState(null);
 
-  const handleBookingSubmit = async (e) => {
+  const handleSeatClick = (seat) => {
+    if (selectedSeats.includes(seat)) {
+      setSelectedSeats(selectedSeats.filter(s => s !== seat)); // Deselect seat
+    } else {
+      setSelectedSeats([...selectedSeats, seat]); // Select seat
+    }
+  };
+
+  const handleBooking = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
 
-    const selectedSeats = show.availableSeats.slice(0, seats); // Select the first `seats` from availableSeats
-    const bookingDetails = {
-      email: email,
+    const bookingData = {
+      email,
       show: show._id,
-      seats: selectedSeats, // Array of selected seat IDs (e.g., "A1", "A2")
-      bookingTime: new Date().toISOString(), // Booking time set to current time
-      totalPrice: seats * show.pricePerSeat, // Calculate total price
+      seats: selectedSeats,
+      bookingTime: new Date().toISOString(),
+      totalPrice: selectedSeats.length * show.pricePerSeat
     };
 
     try {
       const response = await fetch('https://cinema-api.henrybergstrom.com/api/v1/bookings', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bookingDetails),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData)
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit booking.');
+      if (response.ok) {
+        setIsBooked(true);
+        setConfirmationDetails({
+          movieTitle: show.movie.title,
+          startTime: new Date(show.startTime).toLocaleString(),
+          totalPrice: bookingData.totalPrice
+        });
+      } else {
+        console.error('Failed to book');
       }
-
-      const data = await response.json();
-      setConfirmation(data); // Store confirmation data after successful booking
     } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsSubmitting(false);
+      console.error('Error during booking:', error);
     }
   };
 
-  if (confirmation) {
+  if (isBooked && confirmationDetails) {
     return (
-      <div className='book-conf'>
-        <h2>Booking Confirmation</h2>
-        <p>Your booking is confirmed!</p>
-        <p><strong>Movie:</strong> {show.movie.title}</p>
-        <p><strong>Seats:</strong> {confirmation.seats.join(', ')}</p>
-        <p><strong>Total Price:</strong> ${confirmation.totalPrice}</p>
-        <p><strong>Booking Time:</strong> {new Date(confirmation.bookingTime).toLocaleString()}</p>
+      <div className="book-conf">
+        <h2>Booking Confirmed!</h2>
+        <p><strong>Movie:</strong> {confirmationDetails.movieTitle}</p>
+        <p><strong>Show Time:</strong> {confirmationDetails.startTime}</p>
+        <p><strong>Total Price:</strong> ${confirmationDetails.totalPrice}</p>
       </div>
     );
   }
 
   return (
-    <div className='b-form-div'>
-      <h2>Booking Form</h2>
-      <p><strong>Movie:</strong> {show.movie.title}</p>
-      <p><strong>Start Time:</strong> {new Date(show.startTime).toLocaleString()}</p>
-      <p><strong>End Time:</strong> {new Date(show.endTime).toLocaleString()}</p>
-      <p><strong>Room Number:</strong> {show.roomNumber}</p>
+    <div className="b-form-div">
+      <h2>Booking for {show.movie.title}</h2>
+      <p><strong>Time:</strong> {new Date(show.startTime).toLocaleString()}</p>
       <p><strong>Price per Seat:</strong> ${show.pricePerSeat}</p>
-      <form onSubmit={handleBookingSubmit}>
-        <label>
-          Email:
+      <div className="seat-selection">
+        <h3>Select Seats:</h3>
+        <div className="seat-rows">
+          <div className="seat-row">
+            <strong>Row A: </strong>
+            {['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9'].map(seat => (
+              <button
+                key={seat}
+                className={`seat ${show.bookedSeats.includes(seat) ? 'booked' : ''} ${selectedSeats.includes(seat) ? 'selected' : ''}`}
+                onClick={() => handleSeatClick(seat)}
+                disabled={show.bookedSeats.includes(seat)}
+              >
+                {seat}
+              </button>
+            ))}
+          </div>
+          <div className="seat-row">
+            <strong>Row B: </strong>
+            {['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9'].map(seat => (
+              <button
+                key={seat}
+                className={`seat ${show.bookedSeats.includes(seat) ? 'booked' : ''} ${selectedSeats.includes(seat) ? 'selected' : ''}`}
+                onClick={() => handleSeatClick(seat)}
+                disabled={show.bookedSeats.includes(seat)}
+              >
+                {seat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <form onSubmit={handleBooking}>
+        <div className="form-group">
+          <label>Email:</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <br />
-        <label>
-          Number of Seats:
-          <input
-            type="number"
-            value={seats}
-            onChange={(e) => setSeats(e.target.value)}
-            min="1"
-            max={show.availableSeats.length}
-            required
-          />
-        </label>
-        <br />
-        <button className='back-button' type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Confirm Booking'}
+        </div>
+        <div className="form-group">
+          <label>Selected Seats: {selectedSeats.join(', ') || 'None'}</label>
+        </div>
+        <button className='back-button' type="submit" disabled={selectedSeats.length === 0}>
+          Confirm Booking
         </button>
-        {error && <p>Error: {error}</p>}
       </form>
     </div>
   );

@@ -3,7 +3,7 @@
     border: 5px solid #FDBFD3;
     border-radius: 8px;
     padding: 16px;
-    width: 300px;
+    width: 700px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
     flex-grow: 1;
@@ -27,3 +27,49 @@
     margin: 10px;
     flex-grow: 1;
 }
+.seat-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .seat {
+    padding: 15px;
+    background-color: #FDEEF5;
+    border: 2px solid #FDBFD3; /* Added border for better visibility */
+    border-radius: 5px; /* Rounded corners for better aesthetics */
+    cursor: pointer;
+    margin: 2px;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+  }
+  
+  .seat:hover {
+    background-color: #DBD9EC;
+  }
+  
+  .seat.selected {
+    background-color: #e9edf6;
+    color: white;
+  }
+  
+  .seat.booked {
+    background-color: #FDBFD3;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  .booking-confirmation {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
