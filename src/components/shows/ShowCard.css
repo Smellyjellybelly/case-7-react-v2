@@ -39,3 +39,33 @@
 .show-card p {
   margin: 5px 0;
 }
+
+.movie-info {
+  background-color: #FFCFE2;
+  border: 5px solid #FDBFD3;
+  border-radius: 8px;
+  padding: 16px;
+  width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  display: flex;
+}
+
+.movie-info h2 {
+  padding-bottom: 5px;
+  text-align: right;
+}
+
+.movie-info img {
+  width: 300px;
+}
+
+.m-info-2 {
+  width: 250px;
+  padding-top: 35px;
+  padding-left: 15px;
+}
+
+.m-info-2 p {
+  padding-top: 5px;
+}

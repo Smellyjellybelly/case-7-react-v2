@@ -13,18 +13,15 @@
     padding: 16px;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   
   }
   
   .movie-poster {
     width: 100%;
     border-radius: 8px;
+   
   }
   
-  .movie-info {
-    margin-top: 10px;
-  }
-  
-  .movie-info h2 {
-    margin-bottom: 10px;
-  }
-  
+ .movie-div {
+  flex-grow: 1;
+ }

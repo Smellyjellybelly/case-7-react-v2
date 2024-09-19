@@ -2,6 +2,9 @@
     background-color: #FDEEF5;
     color: #FDBFD3;
     text-shadow: -3px 3px #e084a1;
-    padding: 40px;
+    padding: 75px;
     border-bottom: #FDBFD3 solid 5px;
+}
+.h-div h1 {
+    font-size: 64px;
 }

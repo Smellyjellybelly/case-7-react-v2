@@ -7,8 +7,7 @@ const ShowCard = ({ movie, startTime, endTime, availableSeats, bookedSeats, room
 
   return (
     <div className="show-card">
-      
-      <h2>{title}</h2>
+     
       <p><strong>Start Time:</strong> {new Date(startTime).toUTCString()}</p>
       <p><strong>End Time:</strong> {new Date(endTime).toUTCString()}</p>
       <p><strong>Room Number:</strong> {roomNumber}</p>
