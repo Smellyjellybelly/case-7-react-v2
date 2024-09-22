@@ -2,9 +2,13 @@
     background-color: #FDEEF5;
     color: #FDBFD3;
     text-shadow: -3px 3px #e084a1;
-    padding: 75px;
+    padding: 50px;
     border-bottom: #FDBFD3 solid 5px;
+    font-family: 'Hug Me Tight', sans-serif;
+    letter-spacing: 3px;
 }
+
 .h-div h1 {
-    font-size: 64px;
+    font-size: 72px;
+
 }

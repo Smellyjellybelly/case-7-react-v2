@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   gap: 20px;
   flex-grow: 1;
+  font-family: 'Hug Me Tight', sans-serif;
+  letter-spacing: 1.5px;
 }
 
 .shows-list {
@@ -28,9 +30,9 @@
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 10px;
-  /* display: flex;
-  flex-direction: row; */
   flex-grow: 1;
+  font-family: 'Hug Me Tight', sans-serif;
+  letter-spacing: 1.5px;
 }
 
 .show-card p {
@@ -42,7 +44,6 @@
 .show-card ion-icon {
   color: #FDBFD3;
   font-size: 30px;
-  /* margin-top: 3px; */
 }
 
 .movie-info {

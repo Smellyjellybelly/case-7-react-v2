@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'Hug Me Tight';
+  src: url('../public/fonts/Hug Me Tight.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background: linear-gradient(to bottom, #e9edf6, #DBDAEC);
   height: 100%;
+  font-family: 'Hug Me Tight', sans-serif;
 }
 
 .App {
@@ -13,12 +21,14 @@ body {
     background-color: #FDEEF5;
     color: black;
     padding: 10px 20px;
-    border: none;
+    border: 5px solid #FDBFD3;
     border-radius: 5px;
     cursor: pointer;
     margin: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 150px;
+    width: 200px;
+    font-family: 'Hug Me Tight', sans-serif;
+    letter-spacing: 1.5px;
   }
   
   .back-button:hover {
