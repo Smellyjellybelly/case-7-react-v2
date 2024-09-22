@@ -4,7 +4,10 @@ import './Footer.css';
 function Footer() {
     return (
         <div className="f-div">
-            <p>copyright by Peachy</p>
+            <ion-icon name="logo-facebook"></ion-icon>
+            <ion-icon name="logo-instagram"></ion-icon>
+            <ion-icon name="mail-outline"></ion-icon>
+            <p>copyright by Smelly</p>
         </div>
     )
 }
