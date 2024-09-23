@@ -7,6 +7,7 @@ import './app.css';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]); // To store filtered movies
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,6 +16,7 @@ function App() {
       const response = await fetch('https://cinema-api.henrybergstrom.com/api/v1/movies');
       const data = await response.json();
       setMovies(data);
+      setFilteredMovies(data); // Initialize filtered movies with all movies
       setLoading(false);
     };
 
@@ -26,7 +28,15 @@ function App() {
   };
 
   const handleBackClick = () => {
-    setSelectedMovieId(null); // Reset the selected movie
+    setSelectedMovieId(null);
+  };
+
+  const handleSearch = (searchTerm) => {
+    // Filter movies based on the search term
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredMovies(filtered);
   };
 
   if (loading) {
@@ -35,14 +45,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header /> 
+      <Header onSearch={handleSearch} /> 
       {selectedMovieId ? (
         <>
           <button onClick={handleBackClick} className="back-button">Back to Movies</button>
           <Shows movieId={selectedMovieId} />
         </>
       ) : (
-        <Movies movies={movies} onMovieClick={handleMovieClick} />
+        <Movies movies={filteredMovies} onMovieClick={handleMovieClick} /> // Use filteredMovies
       )}
       <Footer />
     </div>

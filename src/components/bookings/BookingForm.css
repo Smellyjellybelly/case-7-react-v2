@@ -49,10 +49,11 @@
   }
   
   .seat {
-    padding: 15px;
+    width: 55px;
+    height: 55px;
     background-color: #FDEEF5;
-    border: 2px solid #FDBFD3; /* Added border for better visibility */
-    border-radius: 5px; /* Rounded corners for better aesthetics */
+    border: 2px solid #FDBFD3;
+    border-radius: 5px; 
     cursor: pointer;
     margin: 2px;
     transition: background-color 0.3s ease; /* Smooth transition effect */

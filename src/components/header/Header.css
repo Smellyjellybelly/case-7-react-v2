@@ -2,7 +2,8 @@
     background-color: #FDEEF5;
     color: #FDBFD3;
     text-shadow: -3px 3px #e084a1;
-    padding: 50px;
+    padding-top: 50px;
+    padding-left: 50px;
     border-bottom: #FDBFD3 solid 5px;
     font-family: 'Hug Me Tight', sans-serif;
     letter-spacing: 3px;
@@ -11,4 +12,25 @@
 .h-div h1 {
     font-size: 72px;
 
+}
+
+.search-button {
+    color: darkslategrey;
+    padding: 10px 20px;
+    border: 5px solid #FDBFD3;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.search-input {
+    color: darkslategrey;
+    padding: 10px 20px;
+    border: 5px solid #FDBFD3;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
 }

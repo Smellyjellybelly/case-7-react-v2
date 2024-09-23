@@ -71,7 +71,6 @@ const Shows = ({ movieId }) => {
           key={selectedShow._id}
           movie={selectedShow.movie}
           startTime={selectedShow.startTime}
-          endTime={selectedShow.endTime}
           availableSeats={selectedShow.availableSeats}
           bookedSeats={selectedShow.bookedSeats}
           roomNumber={selectedShow.roomNumber}
