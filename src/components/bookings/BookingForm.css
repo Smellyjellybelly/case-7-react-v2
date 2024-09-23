@@ -9,6 +9,7 @@
     flex-grow: 1;
     font-family: 'Hug Me Tight', sans-serif;
     letter-spacing: 1.5px;
+    color: darkslategrey;
 }
 
 .b-form-div input {
@@ -17,6 +18,7 @@
     margin-top: 5px;
     margin-left: 5px;
     padding-left: 5px;
+    color: darkslategrey;
 }
 
 .book-conf {
@@ -28,6 +30,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
     flex-grow: 1;
+    font-family: 'Hug Me Tight', sans-serif;
+    letter-spacing: 1.5px;
+    color: darkslategrey;
 }
 .seat-selection {
     display: flex;
@@ -51,6 +56,7 @@
     cursor: pointer;
     margin: 2px;
     transition: background-color 0.3s ease; /* Smooth transition effect */
+    color: darkslategrey;
   }
   
   .seat:hover {

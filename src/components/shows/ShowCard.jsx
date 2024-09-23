@@ -1,7 +1,7 @@
 import React from 'react';
 import './ShowCard.css';
 
-const ShowCard = ({ movie, startTime, endTime, availableSeats, bookedSeats, roomNumber, pricePerSeat }) => {
+const ShowCard = ({ movie, startTime, availableSeats, bookedSeats, roomNumber, pricePerSeat }) => {
 
   const { title, posterUrl } = movie;
 

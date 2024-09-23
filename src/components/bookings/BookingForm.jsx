@@ -54,7 +54,7 @@ const BookingForm = ({ show }) => {
         <h2>Booking Confirmed!</h2>
         <p><strong>Movie:</strong> {confirmationDetails.movieTitle}</p>
         <p><strong>Show Time:</strong> {confirmationDetails.startTime}</p>
-        <p><strong>Total Price:</strong> ${confirmationDetails.totalPrice}</p>
+        <p><strong>Total Price:</strong> {confirmationDetails.totalPrice}</p>
       </div>
     );
   }
@@ -63,7 +63,7 @@ const BookingForm = ({ show }) => {
     <div className="b-form-div">
       <h2>Booking for {show.movie.title}</h2>
       <p><strong>Time:</strong> {new Date(show.startTime).toLocaleString()}</p>
-      <p><strong>Price per Seat:</strong> ${show.pricePerSeat}</p>
+      <p><strong>Price per Seat:</strong> {show.pricePerSeat}</p>
       <div className="seat-selection">
         <h3>Select Seats:</h3>
         <div className="seat-rows">

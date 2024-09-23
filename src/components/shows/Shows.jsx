@@ -109,7 +109,6 @@ const Shows = ({ movieId }) => {
             <ShowCard
               movie={show.movie}
               startTime={show.startTime}
-              endTime={show.endTime}
               availableSeats={show.availableSeats}
               bookedSeats={show.bookedSeats}
               roomNumber={show.roomNumber}

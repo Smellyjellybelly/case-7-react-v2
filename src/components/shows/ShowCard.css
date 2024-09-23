@@ -5,6 +5,7 @@
   flex-grow: 1;
   font-family: 'Hug Me Tight', sans-serif;
   letter-spacing: 1.5px;
+  color: darkslategrey;
 }
 
 .shows-list {
@@ -29,16 +30,18 @@
   padding: 16px;
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  margin: 20px;
   flex-grow: 1;
   font-family: 'Hug Me Tight', sans-serif;
   letter-spacing: 1.5px;
+  
 }
 
 .show-card p {
   margin: 5px 0;
   padding-left: 3px;
   font-size: 20px;
+  color: darkslategrey;
 }
 
 .show-card ion-icon {
@@ -53,7 +56,7 @@
   padding: 16px;
   width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  margin: 20px;
   display: flex;
 }
 

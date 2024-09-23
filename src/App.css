@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Hug Me Tight';
-  src: url('../public/fonts/Hug Me Tight.otf') format('opentype');
+  src: url('/fonts/Hug Me Tight.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,7 +19,7 @@ body {
 
 .back-button {
     background-color: #FDEEF5;
-    color: black;
+    color: darkslategrey;
     padding: 10px 20px;
     border: 5px solid #FDBFD3;
     border-radius: 5px;
