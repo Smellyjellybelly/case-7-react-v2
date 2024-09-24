@@ -3,6 +3,7 @@ import Movies from './components/movies/MovieCard';
 import Shows from './components/shows/Shows';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
+import MovieForm from './components/movieform/MovieForm';
 import './app.css';
 
 function App() {
@@ -10,6 +11,11 @@ function App() {
   const [filteredMovies, setFilteredMovies] = useState([]); // To store filtered movies
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isMovieFormVisible, setMovieFormVisible] = useState(false);
+
+  const toggleMovieForm = () => {
+    setMovieFormVisible(!isMovieFormVisible);
+  };
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -45,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header onSearch={handleSearch} /> 
+      <Header onSearch={handleSearch} />
       {selectedMovieId ? (
         <>
           <button onClick={handleBackClick} className="back-button">Back to Movies</button>
@@ -54,6 +60,11 @@ function App() {
       ) : (
         <Movies movies={filteredMovies} onMovieClick={handleMovieClick} /> // Use filteredMovies
       )}
+      <button onClick={toggleMovieForm}>
+        {isMovieFormVisible ? 'Hide Movie Form' : 'Post a New Movie'}
+      </button>
+      {isMovieFormVisible && <MovieForm />} {/* Show form when button is clicked */}
+      <Movies />
       <Footer />
     </div>
   );
