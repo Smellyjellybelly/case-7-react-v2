@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './EditMovieForm.css'
 
 const EditMovieForm = ({ movieId, initialMovieData, onMovieUpdated }) => {
   const [formData, setFormData] = useState({
@@ -58,7 +59,8 @@ const EditMovieForm = ({ movieId, initialMovieData, onMovieUpdated }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='edit-form'>
+    <form  onSubmit={handleSubmit}>
       <h2>Edit Movie</h2>
       <div>
         <label>Title:</label>
@@ -138,8 +140,9 @@ const EditMovieForm = ({ movieId, initialMovieData, onMovieUpdated }) => {
           required
         />
       </div>
-      <button type="submit">Update Movie</button>
+      <button className='back-button' type="submit">Update Movie</button>
     </form>
+    </div>
   );
 };
 

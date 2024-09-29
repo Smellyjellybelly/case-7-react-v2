@@ -42,11 +42,11 @@ const Movies = ({ movies = [], onMovieClick }) => {
             onMovieUpdated={handleMovieUpdated}
           />
         ) : (
-          <div className="movies-list">
+          <div className="edit-movies-list">
             {movies.map((movie) => (
               <div key={movie._id}>
                 <h3>{movie.title}</h3>
-                <button onClick={() => handleEditClick(movie)}>Edit</button>
+                <button className="back-button" onClick={() => handleEditClick(movie)}>Edit</button>
               </div>
             ))}
           </div>

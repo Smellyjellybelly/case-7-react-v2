@@ -1,32 +1,48 @@
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  form div {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input, textarea {
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: darkgreen;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.movie-form {
+  background-color: #FFCFE2;
+  border: 5px solid #FDBFD3;
+  border-radius: 8px;
+  padding: 16px;
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.movie-form input {
+  background-color: #FDEEF5;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding-left: 5px;
+  color: darkslategrey;
+}
+
+.movie-form textarea {
+  background-color: #FDEEF5;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding-left: 5px;
+  color: darkslategrey;
+}

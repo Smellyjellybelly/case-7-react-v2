@@ -52,7 +52,7 @@ const MovieForm = () => {
   }
 
   return (
-    <div>
+    <div className='movie-form'>
       <h2>Post a New Movie</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -127,7 +127,7 @@ const MovieForm = () => {
             required
           />
         </div>
-        <button type="submit">Post Movie</button>
+        <button className='back-button' type="submit">Post Movie</button>
       </form>
     </div>
   );

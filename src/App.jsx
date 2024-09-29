@@ -60,7 +60,7 @@ function App() {
       ) : (
         <Movies movies={filteredMovies} onMovieClick={handleMovieClick} /> // Use filteredMovies
       )}
-      <button onClick={toggleMovieForm}>
+      <button className="back-button" onClick={toggleMovieForm}>
         {isMovieFormVisible ? 'Hide Movie Form' : 'Post a New Movie'}
       </button>
       {isMovieFormVisible && <MovieForm />} {/* Show form when button is clicked */}
